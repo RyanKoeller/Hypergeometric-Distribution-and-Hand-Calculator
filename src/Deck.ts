@@ -1,5 +1,5 @@
 import FactorialMath from "./FactorialMath";
-import CardCategory from "../CardCategory";
+import CardCategory from "./CardCategory";
 
 class Deck {
     // region Properties

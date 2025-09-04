@@ -1,5 +1,5 @@
 import Deck from "./Deck";
-import CardCategory from "../CardCategory";
+import CardCategory from "./CardCategory";
 const decks: Deck[] = [];
 const customHandSize = 5;
 
