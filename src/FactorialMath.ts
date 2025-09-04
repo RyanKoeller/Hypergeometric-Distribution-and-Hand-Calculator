@@ -1,6 +1,8 @@
 class FactorialMath {
 
-    static f: number[] = [];
+    private static DEFAULT_HAND_SIZE: number = 5;
+
+    private static f: number[] = [];
 
     constructor() {
         throw new Error('Cannot instantiate static class.');
@@ -18,7 +20,7 @@ class FactorialMath {
         return this.factorial(n) / (this.factorial(k) * this.factorial(n - k));
     }
 
-    static hypergeometricDistribution(deckSize: number, desiredCards: number, cardsDrawn: number, min: number, max: number): number {
+    static hypergeometricDistribution(deckSize: number, desiredCards: number, min: number, max: number, cardsDrawn?: number): number {
         if (min < 0 || max < 0) {
             throw "You cannot draw negative cards.";
         }
@@ -27,6 +29,9 @@ class FactorialMath {
         }
         if (max > desiredCards) {
             max = desiredCards;
+        }
+        if (cardsDrawn === undefined) {
+            cardsDrawn = this.DEFAULT_HAND_SIZE;
         }
 
         let totalProbability = 0;

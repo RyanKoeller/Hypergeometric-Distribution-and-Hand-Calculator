@@ -1,8 +1,5 @@
 import FactorialMath from "./FactorialMath";
 
-// Change to see the odds of drawing a card in a given sample size
-const STARTING_HAND_SIZE: number = 5;
-
 class Deck {
     // region Properties
     constructor(
@@ -51,20 +48,20 @@ class Deck {
     // endregion
 
     // region Hand probabilities
-    public calculateStarterProb(min: number = 1, max: number = 5) {
-        return FactorialMath.hypergeometricDistribution(this.deckSize, this._starters, STARTING_HAND_SIZE, min, max);
+    public calculateStarterProb(min: number = 1, max: number = 5, customHandSize?: number) {
+        return FactorialMath.hypergeometricDistribution(this.deckSize, this._starters, min, max, customHandSize);
     }
 
-    public calculateHandTrapProb(min: number = 1, max: number = 5) {
-        return FactorialMath.hypergeometricDistribution(this.deckSize, this._handTraps, STARTING_HAND_SIZE, min, max);
+    public calculateHandTrapProb(min: number = 1, max: number = 5, customHandSize?: number) {
+        return FactorialMath.hypergeometricDistribution(this.deckSize, this._handTraps, min, max, customHandSize);
     }
 
-    public calculateUtilityProb(min: number = 1, max: number = 5) {
-        return FactorialMath.hypergeometricDistribution(this.deckSize, this._utility, STARTING_HAND_SIZE, min, max);
+    public calculateUtilityProb(min: number = 1, max: number = 5, customHandSize?: number) {
+        return FactorialMath.hypergeometricDistribution(this.deckSize, this._utility, min, max, customHandSize);
     }
 
-    public calculateBrickProb(min: number = 1, max: number = 5) {
-        return FactorialMath.hypergeometricDistribution(this.deckSize, this._bricks, STARTING_HAND_SIZE, min, max);
+    public calculateBrickProb(min: number = 1, max: number = 5, customHandSize?: number) {
+        return FactorialMath.hypergeometricDistribution(this.deckSize, this._bricks, min, max, customHandSize);
     }
     // endregion
 
@@ -72,20 +69,23 @@ class Deck {
         return (this.deckSize * 0.3).toPrecision(3);
     }
 
-    public deckSummary() {
+    public deckSummary(min?: number, max?: number, customHandSize?: number) {
         return {
             name: this.name,
             deckSize: this.deckSize,
-            starterProbability: `${(this.calculateStarterProb() * 100).toPrecision(4)}%`,
-            handTrapProbability: `${(this.calculateHandTrapProb() * 100).toPrecision(4)}%`,
-            utilityProbability: `${(this.calculateUtilityProb() * 100).toPrecision(4)}%`,
-            brickProbability: `${(this.calculateBrickProb() * 100).toPrecision(4)}%`,
+            starterProbability: `${(this.calculateStarterProb(min, max, customHandSize) * 100).toPrecision(4)}%`,
+            handTrapProbability: `${(this.calculateHandTrapProb(min, max, customHandSize) * 100).toPrecision(4)}%`,
+            utilityProbability: `${(this.calculateUtilityProb(min, max, customHandSize) * 100).toPrecision(4)}%`,
+            brickProbability: `${(this.calculateBrickProb(min, max, customHandSize) * 100).toPrecision(4)}%`,
             preferredHandTrapSize: `${this.preferredHandTrapSize()}`,
         }
     }
 
-    public static ComparisonTable(decks: Deck[]) {
-        console.table([...decks.map(d => d.deckSummary())]);
+    public static ComparisonTable(decks: Deck[], min?: number, max?: number, customHandSize?: number, ) {
+        if (max === undefined) {
+            max = customHandSize;
+        }
+        console.table([...decks.map(d => d.deckSummary(min, max, customHandSize))]);
     }
 }
 
