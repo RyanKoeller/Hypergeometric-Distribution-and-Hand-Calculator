@@ -24,6 +24,7 @@ class Deck {
     }
     get deckSize() {
         return this.cardCategories
+            .filter(n => n.addToDeckSize)
             .map(n => n.size)
             .reduce((acc, cur) => acc + cur, 0);
     }
@@ -43,7 +44,7 @@ class Deck {
             deckSummary[`${cardCategory.name} Probability`]
                 = `${(Deck.calculateCardCategoryProb(this.deckSize, cardCategory, min, max, customHandSize) * 100).toPrecision(4)}%`;
         }
-        deckSummary.preferredHandTrapSize = this.preferredHandTrapSize();
+        // deckSummary.preferredHandTrapSize = this.preferredHandTrapSize();
 
         return deckSummary;
     }
