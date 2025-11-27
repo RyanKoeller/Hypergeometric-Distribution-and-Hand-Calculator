@@ -60,7 +60,7 @@ class Deck {
     }
     // endregion
 
-    public static ComparisonTable(decks: Deck[], min?: number, max?: number, customHandSize?: number, ) {
+    public static comparisonTable(decks: Deck[], min?: number, max?: number, customHandSize?: number, ) {
         if (max === undefined) {
             max = customHandSize;
         }

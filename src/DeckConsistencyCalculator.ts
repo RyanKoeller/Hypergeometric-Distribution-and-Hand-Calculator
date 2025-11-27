@@ -13,4 +13,4 @@ decks.push(
             new CardCategory("Brick", 3)
         ]
     ));
-Deck.ComparisonTable(decks, undefined, undefined, customHandSize);
+Deck.comparisonTable(decks, undefined, undefined, customHandSize);

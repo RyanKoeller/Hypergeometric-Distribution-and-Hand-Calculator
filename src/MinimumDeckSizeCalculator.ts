@@ -1,6 +1,13 @@
 // hypergeometric distribution deck size
 import FactorialMath from "./FactorialMath";
 
+/**
+ * Calculates the minimum amount of cards of a category before the
+ * target probability is reached given a desired card total.
+ * @param N Total cards (deck size)
+ * @param n Number of draws
+ * @param targetProb Target probability for
+ */
 function calculateMinK(N: number, n: number, targetProb: number) {
     if (targetProb > 1 || targetProb < 0 ) {
         throw new Error('Invalid target probability');
