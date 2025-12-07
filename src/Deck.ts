@@ -24,7 +24,7 @@ class Deck {
     }
     get deckSize() {
         return this.cardCategories
-            .filter(n => n.addToDeckSize)
+            .filter(n => n.boolAddToDeckSize)
             .map(n => n.size)
             .reduce((acc, cur) => acc + cur, 0);
     }
@@ -56,7 +56,7 @@ class Deck {
         min: number = 1,
         max: number = 5,
         customHandSize?: number): number {
-        return FactorialMath.hypergeometricDistribution(deckSize, cardCategory.size, min, max, customHandSize)
+        return Number(FactorialMath.hypergeometricDistribution(deckSize, cardCategory.size, min, max, customHandSize))
     }
     // endregion
 

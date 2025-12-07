@@ -2,7 +2,7 @@
 import FactorialMath from "./FactorialMath";
 
 /**
- * Calculates the minimum amount of cards of a category before the
+ * Calculates the minimum number of cards of a category before the
  * target probability is reached given a desired card total.
  * @param N Total cards (deck size)
  * @param n Number of draws
@@ -18,9 +18,13 @@ function calculateMinK(N: number, n: number, targetProb: number) {
         // Probability of no success
         const probNoSuccess = FactorialMath.combinations(N - K, n) / FactorialMath.combinations(N, n);
         // Probability of at least one success
-        const probAtLeastOneSuccess = 1 - probNoSuccess;
+        const probAtLeastOneSuccess = 1n - probNoSuccess;
         if (probAtLeastOneSuccess >= targetProb) {
-            return {deckSize: N, starters: K, achievedProb: +(probAtLeastOneSuccess * 100).toPrecision(4)  + '%', utility: +(N * 0.3).toPrecision(3) };
+            return {
+                deckSize: N,
+                starters: K,
+                achievedProb: +Number(probAtLeastOneSuccess * 100n).toPrecision(4)  + '%',
+                utility: +(N * 0.3).toPrecision(3) };
         }
     }
     return null; // If no K satisfies the condition

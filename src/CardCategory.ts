@@ -16,10 +16,10 @@ class CardCategory {
     set size(size: number) {
         this._size = size;
     }
-    get addToDeckSize() {
+    get boolAddToDeckSize() {
         return this._addToDeckSize;
     }
-    set addToDeckSize(addToDeckSize: boolean) {
+    set boolAddToDeckSize(addToDeckSize: boolean) {
         this._addToDeckSize = addToDeckSize;
     }
 }
