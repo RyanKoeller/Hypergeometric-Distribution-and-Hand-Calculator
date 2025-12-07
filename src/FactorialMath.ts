@@ -9,6 +9,12 @@ class FactorialMath {
         throw new Error('Cannot instantiate static class.');
     }
 
+    /**
+     * Calculates the factorial of a non-negative integer n.
+     * Uses memoization to cache previously computed factorials.
+     * @param n - The non-negative integer to compute the factorial of.
+     * @returns The factorial of n as a BigInt.
+     */
     static factorial(n: number): bigint {
         if (n < 0) {
             throw new Error("Factorial not defined for negative numbers.");
@@ -33,12 +39,28 @@ class FactorialMath {
         return f[n];
     }
 
+    /**
+     * Calculates the number of combinations (n choose k).
+     * @param n - Total number of items.
+     * @param k - Number of items to choose.
+     * @returns The number of combinations as a BigInt.
+     */
     static combinations(n: number, k: number): bigint {
         if (k < 0 || k > n) return 0n;
 
         return this.factorial(n) / (this.factorial(k) * this.factorial(n - k));
     }
 
+    /**
+     * Computes the probability of a certain range of desired cards in a draw
+     * from a deck based on the hypergeometric distribution.
+     * @param deckSize - Total number of cards in the deck.
+     * @param desiredCards - Total number of desired cards in the deck.
+     * @param min - Minimum number of desired cards to draw.
+     * @param max - Maximum number of desired cards to draw.
+     * @param cardsDrawn - Number of cards drawn (defaults to DEFAULT_HAND_SIZE).
+     * @returns The probability as a number.
+     */
     static hypergeometricDistribution(
         deckSize: number,
         desiredCards: number,
